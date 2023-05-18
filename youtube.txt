@@ -1,0 +1,6 @@
+https://www.youtube.com/watch?v=jWMQ5PyNBMs
+
+You stopped around 36:15
+
+So far it does its task except it fails on certain words 
+as well as show multiple definitions rather then just one
