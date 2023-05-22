@@ -6,15 +6,15 @@ const config = {
         secure:true
     },
     identity:{
-        username:"gameswithchaos",
-        password:"oauth:ohvd8l3ik92dnnw6hz61k3ebadx52i"
+        username:"DemKittyFactz",
+        password:"oauth:sxu34qb5a42xj45orf45p5xkb2x39p"
     },
     channels:[
         "gameswithchaos" ,
     "legendofdragoonchatgame",
 ],
     API_KEY: "uxjyka1yhl0q7p8qyptp0cne3el5vx",
-    API_SECRET: "70tajq073ratpp63aaexb0yw9w5s1d",
+    API_SECRET: "jrwn1elj5p1kpea5j82tlbt10g1uta",
     
 };
 
