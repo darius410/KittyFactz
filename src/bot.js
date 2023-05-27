@@ -21,7 +21,7 @@ const config = {
     },
     channels:[
         "gameswithchaos" ,
-    "legendofdragoonchatgame",
+    "showmeurkittiesplz"
 ],
         API_KEY:API_KEY ,
         API_SECRET:API_SECRET
@@ -114,7 +114,7 @@ setInterval(() => {
         kittyFactz(channel,null,"!KittyFact",true);
 
     });
-}, 2700000);
+}, 27000);
 
 chatBot.on('message', kittyFactz)
 // chatBot.on('message', showKitty )
