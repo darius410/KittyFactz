@@ -47,18 +47,7 @@ function kittyFactz (channel,userstate,message,self){
 
             const dataObj = res.data.fact
             const kittyFact = dataObj
-            //  let wordDefinition = " ";
-
-            // for(let i = 0; i < res.data.length; i++){
-            //     wordDefinition = wordDefinition + dataObj.meanings[i].partOfSpeech + " - ";
-            //    for ( let j = 0; j < dataObj.meanings[i].definitions.length; j++){
-            //     wordDefinition = wordDefinition + (j + 1) + ": " + dataObj.meanings[i].definitions[j].definition + " ";
-            //    }
-            //    if(i < dataObj.meanings[i].length - 1){
-            //     wordDefinition = wordDefinition + " -- ";
-            //    }
-                
-            // }
+ 
                     console.log(kittyFact);
                     chatBot.say(channel, kittyFact)
                    
@@ -113,45 +102,6 @@ function wordLookUp(channel, userstate ,message, self){
     
 
 
-
-// function chatMessageHandler(channel, userstate ,message, self){
-//     console.log(message)
-// }
-
-// function showKitty (channel, userstate ,message, self){
-    
-//     const wordArray = message.split(' ');
-
-//     if(wordArray[0] === '!showKitty'){
-//         chatBot.say(channel, "https://source.unsplash.com/cats/200x200?sig=1" )
-//     }
-// }
-
-// function tempConvert(channel, userstate ,message, self){
-
-    
-
-// const wordArray = message.split(' ');
-
-//     if(wordArray[0] === '!f2c' || wordArray[0] === "!c2f") {
-//         if(Number.isNaN(parseInt(wordArray[1] )) === true  ){
-//             chatBot.say(channel,"Um... that's not a number or an integar.Try to enter a number after the command. Ex( !f2c 77 )");
-//         }else{
-//             if(wordArray[0] === "!f2c"){
-//                   chatBot.say(channel, 
-//                     message.split(' ')[1] + " degrees in F are " + ((parseInt(message.split(' ')[1]) - 32) * 5/9) + " degrees in C ");
-//                     console.log((message.split(' ')[1] + " degrees in F are " + ((parseInt(message.split(' ')[1]) - 32) * 5/9) + " degrees in C "))
-          
-//         }else if(wordArray[0] === "!c2f"){
-//                  chatBot.say(channel, 
-//                     message.split(' ')[1] + " degrees in C are " + ((parseInt(message.split(' ')[1]) - 5/9) + 32) + " degrees in F ");
-//                     console.log((message.split(' ')[1] + " degrees in C are " + ((parseInt(message.split(' ')[1]) - 5/9) + 32) + " degrees in F "))
-          
-//             }
-//         }
-//             }
-
-//         }
 chatBot.on('message', wordLookUp )
 
 
