@@ -1,11 +1,33 @@
-// import axios from "axios";
+require('dotenv').config();
+ // import axios from "axios";
 const twitchApi = require("tmi.js");
 const axios = require('axios').default;
+const API_KEY = process.env.API_KEY
+const API_SECRET = process.env.API_SECRET
 
 
-const configuration = require('./config.js') 
-const chatBot = new twitchApi.client(configuration);
 
+
+const config = {
+
+    options:{debug:true, messageLevel:"info"},
+    connection:{
+        reconnect:true,
+        secure:true
+    },
+    identity:{
+        username:"Kittyfactz",
+        password:"oauth:ssjqjxe3s7ppfhlzczdjz25b4qk8z7"
+    },
+    channels:[
+        "gameswithchaos" ,
+    "legendofdragoonchatgame",
+],
+        API_KEY:API_KEY ,
+        API_SECRET:API_SECRET
+    
+};
+const chatBot = new twitchApi.client(config);
 
 
 
@@ -13,11 +35,11 @@ function kittyFactz (channel,userstate,message,self){
 
     const userMessage = message.split(' ');
 
-    if(userMessage[0] === "!KittyFact" ){
+    if(userMessage[0] === "!Kittyfact" ){
         
         
         axios.get('https://catfact.ninja/fact?max_length=140' ,
-        {
+        { 
             responseType: 'json',
         })
         
