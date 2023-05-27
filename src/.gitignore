@@ -14,6 +14,8 @@ dist/
 build/
 out/
 
+new.js
+
 # Ignore editor-specific files
 .vscode/
 .idea/
