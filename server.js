@@ -51,20 +51,12 @@ function kittyFactz (channel,userstate,message,self){
                    
         })
         .catch(function (err) {
-            chatBot.say(self, "An error occurred, maybe ask the dev ?")
+            chatBot.say(channel, "An error occurred, maybe ask the dev ?")
             console.log(err);
         })
     };
     
 }
-
-
-
-
-    
-
-
-chatBot.on('message', wordLookUp )
 
 
 
