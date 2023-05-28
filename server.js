@@ -33,7 +33,7 @@ function kittyFactz (channel,userstate,message,self){
 
     const userMessage = message.split(' ');
 
-    if(userMessage[0] === "!Kittyfact" ){
+    if(/^!kittyfact$/i.test(userMessage[0])){
         
         
         axios.get('https://catfact.ninja/fact?max_length=140' ,
@@ -64,6 +64,7 @@ function kittyFactz (channel,userstate,message,self){
     
 
 
+chatBot.on('message', wordLookUp )
 
 
 
