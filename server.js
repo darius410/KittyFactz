@@ -64,7 +64,6 @@ function kittyFactz (channel,userstate,message,self){
     
 
 
-chatBot.on('message', wordLookUp )
 
 
 
