@@ -6,8 +6,6 @@ const API_KEY = process.env.API_KEY
 const API_SECRET = process.env.API_SECRET
 
 
-
-
 const config = {
 
     options:{debug:true, messageLevel:"info"},
@@ -61,42 +59,6 @@ function kittyFactz (channel,userstate,message,self){
 }
 
 
-// function wordLookUp(channel, userstate ,message, self){
-//     const wordArray = message.split(' ');
-
-//         if(wordArray[0] === "!define"){
-            
-            
-//             axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/' + wordArray[1],
-//             {
-//                 responseType: 'json',
-//             })
-            
-//             .then(function (res){
-//                 const dataObj = res.data[0];
-//                 const dataMeanings = dataObj.meanings[0];
-//                  let wordDefinition = " ";
-
-//                 for(let i = 0; i < res.data.length; i++){
-//                     wordDefinition = wordDefinition + dataObj.meanings[i].partOfSpeech + " - ";
-//                    for ( let j = 0; j < dataObj.meanings[i].definitions.length; j++){
-//                     wordDefinition = wordDefinition + (j + 1) + ": " + dataObj.meanings[i].definitions[j].definition + " ";
-//                    }
-//                    if(i < dataObj.meanings[i].length - 1){
-//                     wordDefinition = wordDefinition + " -- ";
-//                    }
-                    
-//                 }
-//                         console.log(dataMeanings);
-//                         chatBot.say(channel, wordDefinition)
-                       
-//             })
-//             .catch(function (err) {
-//                 chatBot.action(self, "Hmm, I can't find that definition, servers maybe ?")
-//                 console.log(err);
-//             })
-//         };
-//     };
 
 
     
@@ -111,7 +73,7 @@ chatBot.on('message', wordLookUp )
 setInterval(() => {
     const channelName = "gameswithchaos";
     chatBot.channels.forEach((channel) => {
-        kittyFactz(channel,null,"!Kittyfact",true);
+        kittyFactz(channel, null, "!Kittyfact", true);
 
     });
 }, 30 * 60 * 1000);
