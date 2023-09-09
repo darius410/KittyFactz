@@ -82,10 +82,10 @@ if(isLive){
 
 
 setInterval(async() => {
-    const isLive = await isChannelLive(channel);
+   
     // const channelName = "gameswithchaos";
-    chatBot.channels.forEach((channel) => {
-       
+    chatBot.channels.forEach(async (channel) => {
+        const isLive = await isChannelLive(channel);
         if(isLive){
         kittyFactz(channel, null, "!Kittyfact", true);
         }
