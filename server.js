@@ -23,7 +23,7 @@ const config = {
     channels:[
         "gameswithchaos" ,
         "kittyfactzplz",
-       "KittiesPlease"
+       // "KittiesPlease"
 ],
         API_KEY:API_KEY ,
         API_SECRET:API_SECRET
@@ -41,7 +41,7 @@ const chatBot = new twitchApi.client(config);
 
 async function isChannelLive(channel) {
     return axios
-      .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz`, {
+      .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz&gameswithchaos`, {
         headers: {              
           'Authorization': `Bearer ${OAUTH_TOKEN}`,
           'Client-ID':CLIENT_ID
@@ -52,10 +52,10 @@ async function isChannelLive(channel) {
         return response.data.data.length > 0;
         // If there's data in the response, the channel is live
       })
-      // .catch(error => {
-      //   console.error("Error checking stream status:", error);
-      //   return false; // Default to not live if there's an error
-      // });
+      .catch(error => {
+        console.error("Error checking stream status:", error);
+         return false; // Default to not live if there's an error
+       });
   }
 
 async function kittyFactz (channel,userstate,message,self){
