@@ -20,7 +20,8 @@ const config = {
     },
     channels:[
         "gameswithchaos" ,
-       "KittiesPlease"
+       "KittiesPlease",
+       "kittyfactzplz"
 ],
         API_KEY:API_KEY ,
         API_SECRET:API_SECRET
