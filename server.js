@@ -1,6 +1,7 @@
 require('dotenv').config();
  // import axios from "axios";
 const twitchApi = require("tmi.js");
+
 const axios = require('axios').default;
 const API_KEY = process.env.API_KEY
 const API_SECRET = process.env.API_SECRET
@@ -15,11 +16,11 @@ const config = {
     },
     identity:{
         username:"Kittyfactz",
-        password:"oauth:ssjqjxe3s7ppfhlzczdjz25b4qk8z7"
+        password:"oauth:ojgh14pkh727n210l1madyfbd5sjqg"
     },
     channels:[
         "gameswithchaos" ,
-    "showmeurkittiesplz"
+       "KittiesPlease"
 ],
         API_KEY:API_KEY ,
         API_SECRET:API_SECRET
@@ -28,32 +29,28 @@ const config = {
 const chatBot = new twitchApi.client(config);
 
 
-function isChannelLive(channel){
-    
-  return axios.get('https://api.twitch.tv/helix/channels?broadcaster_id=145015985&broadcaster_id=401967824',{
-        responseType:'json',
-
-        headers:{
-            'Authorization : `Bearer ${API_SECRET}`': 
-            'Client-ID : API_KEY'
+async function isChannelLive(channelName) {
+    return axios
+      .get(`https://api.twitch.tv/helix/streams?user_login=${channelName}`, {
+        headers: {
+          "Client-ID": API_KEY
         }
-  }).then (function(response){
-    const streamerData = response.data.data[2];
-    console.log(streamerData);
-    chatBot.say(channel, streamerData);
-
-  }).catch (function(err){
-        const channelNotFound = err;
-        chatBot.say(channel);
-        console.log(channelNotFound);
-  });
-  1
-}
-
+      })
+      .then(response => {
+        return response.data.data.length > 0; // If there's data in the response, the channel is live
+      })
+      .catch(error => {
+        console.error("Error checking stream status:", error);
+        return false; // Default to not live if there's an error
+      });
+  }
 
 async function kittyFactz (channel,userstate,message,self){
     const isLive = await isChannelLive(channel);
-    const userMessage = message.split(' ');
+    if (typeof(message) =='string'){
+        const userMessage = message.split(' ');
+    }
+    
 if(isLive){
     if(/^!kittyfact$/i.test(userMessage[0])){
         
@@ -85,17 +82,22 @@ if(isLive){
 
 
 setInterval(async() => {
-    const isLive = await isChannelLive(channel);
-    const channelName = "gameswithchaos";
-    chatBot.channels.forEach((channel) => {
-       
+   
+    // const channelName = "gameswithchaos";
+    chatBot.channels.forEach(async (channel) => {
+        const isLive = await isChannelLive(channel);
         if(isLive){
         kittyFactz(channel, null, "!Kittyfact", true);
         }
     });
 }, 60 * 60 * 1000);
 
-chatBot.on('message', kittyFactz)
+chatBot.on('message', (channel, userstate, message, self) => {
+    if (/^!kittyfact$/i.test(message)) {
+      kittyFactz(channel);
+    }
+  });
+// chatBot.on('message', kittyFactz)
 // chatBot.on('message', showKitty )
 // chatBot.on('message', tempConvert )
 // chatBot.on('message', chatMessageHandler)
