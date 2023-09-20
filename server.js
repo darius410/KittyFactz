@@ -23,7 +23,7 @@ const config = {
     channels:[
         "gameswithchaos" ,
         "kittyfactzplz",
-       // "KittiesPlease"
+        "KittiesPlease"
 ],
         API_KEY:API_KEY ,
         API_SECRET:API_SECRET
@@ -41,7 +41,7 @@ const chatBot = new twitchApi.client(config);
 
 async function isChannelLive(channel) {
     return axios
-      .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz&gameswithchaos`, {
+      .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz&gameswithchaos&kittiesplease`, {
         headers: {              
           'Authorization': `Bearer ${OAUTH_TOKEN}`,
           'Client-ID':CLIENT_ID
