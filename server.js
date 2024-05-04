@@ -18,8 +18,7 @@ const config = {
     },
     identity:{
         username:"Kittyfactz",
-        password:"oauth:axv91pcvv2u8b4ijiuvesf6n8faz9b"
-    },
+        password:"oauth:ojgh14pkh727n210l1madyfbd5sjqg"
     channels:[
         "gameswithchaos" ,
         "kittyfactzplz",
