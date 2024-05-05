@@ -43,12 +43,13 @@ async function isChannelLive(channel) {
       .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz&gameswithchaos&kittiesplease`, {
         headers: {              
           'Authorization': `Bearer ${OAUTH_TOKEN}`,
-          'Client-ID':CLIENT_ID
+          'Client-ID': CLIENT_ID
         }
       })
       .then(response => {
         
         return response.data.data.length > 0;
+        console.log("user logged")
         // If there's data in the response, the channel is live
       })
       .catch(error => {
