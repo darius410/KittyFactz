@@ -9,6 +9,10 @@ const OAUTH_TOKEN = process.env.OAUTH_TOKEN
 const CLIENT_ID = process.env.CLIENT_ID
 
 
+
+
+
+
 const config = {
 
     options:{debug:true, messageLevel:"info"},
@@ -39,35 +43,39 @@ const config = {
 const chatBot = new twitchApi.client(config);
 
 
-async function isChannelLive(channel) {
-    return axios
-      .get(`https://api.twitch.tv/helix/streams?user_login=kittyfactzplz&gameswithchaos&kittiesplease`, {
-        headers: {              
-          'Authorization': `Bearer ${OAUTH_TOKEN}`,
-          'Client-ID': CLIENT_ID
-        }
-      })
-      .then(response => {
-        
-        return response.data.data.length > 0;
-        console.log("user logged")
-        // If there's data in the response, the channel is live
-      })
-      .catch(error => {
-        console.error("Error checking stream status:", error);
-         return false; // Default to not live if there's an error
-       });
-  }
+// async function isChannelLive(channels) {
+//   console.log(channels)
+//     return axios
+//       .get(`https://api.twitch.tv/helix/streams?user_login=${channels}`, {
+//         headers: {              
+//           'Authorization': `Bearer ${OAUTH_TOKEN}`,
+//           'Client-ID': CLIENT_ID
+//         }
+//       })
+//       .then(response => {
+           
+//         return response.data.data.length > 0;
+    
+//         // If there's data in the response, the channel is live
+//       })
+//       .catch(error => {
+//         console.error("Error checking stream status:", error);
+//          return false; // Default to not live if there's an error
+//        });
+//   }
 
 async function kittyFactz (channel,userstate,message,self){
-    const isLive = await isChannelLive(channel);
+
+//  const isLive = await isChannelLive(channel);
+//  console.log( "It is " + isLive  + " that the streamer is live")
     if (typeof(message) =='string'){
         const userMessage = message.split(' ');
     
     
-if(isLive){
-    if(/^!kittyfact$/i.test(userMessage[0])){
-        
+    if(message){
+      
+        if(/^!kittyfact$/i.test(userMessage[0])){
+            
         
         axios.get('https://catfact.ninja/fact?max_length=140' ,
         { 
@@ -75,11 +83,11 @@ if(isLive){
         })
         
         .then(function (res){
-
+            console.log(res.data.fact);
             const dataObj = res.data.fact
             const kittyFact = dataObj
  
-                    console.log(kittyFact);
+          
                     chatBot.say(channel, kittyFact)
                    
         })
@@ -96,24 +104,23 @@ if(isLive){
 
 
 
-setInterval(async() => {
+// setInterval(async() => {
    
-    // const channelName = "gameswithchaos";
-    chatBot.channels.forEach(async (channel) => {
-        const isLive = await isChannelLive(channel);
-        if(isLive){
-        kittyFactz(channel, null, "!Kittyfact", true);
-        }
-    });
-}, 60 * 60 * 1000);
+//     // const channelName = "gameswithchaos";
+//     chatBot.channels.forEach(async (channel) => {
+//         const isLive = await isChannelLive(channel);
+//         if(isLive){
+//         kittyFactz(channel, null, "!Kittyfact", true);
+//         }
+//     });
+// }, 60 * 60 * 1000);
 
 chatBot.on('message', (channel, userstate, message, self) => {
     if (/^!kittyfact$/i.test(message)) {
       kittyFactz(channel,userstate);
     }
   });
-// chatBot.on('message', kittyFactz)
-// chatBot.on('message', showKitty )
-// chatBot.on('message', tempConvert )
-// chatBot.on('message', chatMessageHandler)
+
+
+ chatBot.on('message', kittyFactz)
 chatBot.connect().catch(console.error)
