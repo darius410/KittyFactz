@@ -1,4 +1,4 @@
-# Twitch Kitty Fact Bot
+## Use the phrase !Kittyfact 
 
 The Twitch Kitty Fact Bot is a chat bot that provides users with random cat facts on Twitch.
 It connects to the Twitch chat using the tmi.js library and fetches cat facts from the catfact.ninja API.
